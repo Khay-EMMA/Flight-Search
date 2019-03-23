@@ -16,6 +16,11 @@
   width: -webkit-fill-available;
 }
 
+.input:focus {
+  outline: none;
+  border: 1px solid #fed538
+}
+
 .list-container {
   background-color: #fff;
   border: 1px solid #e5e5e5;

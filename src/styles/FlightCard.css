@@ -1,0 +1,40 @@
+.flight-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(60,64,67, 0.3), 0 4px 8px 3px rgba(60,64,67, 0.15);
+  margin: 10px auto;
+  padding: 8px 16px;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  width: 80%;
+}
+
+.price {
+  float: right;
+}
+
+.book-button {
+  float: right;
+}
+
+.detail-container {
+  display: flex;
+}
+
+.id {
+  padding: 5px 15px;
+}
+
+.inner {
+  padding: 5px;
+}
+
+.time {
+  padding-bottom: 5px;
+}
+
+.city {
+  color: #3c4043
+}

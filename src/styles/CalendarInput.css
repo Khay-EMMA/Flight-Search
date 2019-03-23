@@ -7,14 +7,6 @@
   color: #808080;
 }
 
-.input {
-  border-radius: 3px;
-  border: 1px solid #e5e5e5;
-  font-size: 16px;
-  padding: 10px 15px;
-  width: -webkit-fill-available;
-}
-
 .calendar-container {
   position: absolute;
 }

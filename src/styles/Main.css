@@ -15,3 +15,7 @@
   background: url(../static/bg2.jpg) top left;
   background-size: cover;
 }
+
+.seperator {
+  margin-top: 80px;
+}

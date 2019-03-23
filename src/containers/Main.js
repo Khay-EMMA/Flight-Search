@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
 import '../styles/Main.css';
 import SearchBox from '../components/SearchBox';
 import store from "../store";
+import FlightCard from '../components/FlightCard';
 
 class Main extends Component {
   constructor(props) {
@@ -15,7 +15,12 @@ class Main extends Component {
     return (
       <div>
         <div className={initial? "Main": "Main small"}></div>
-        <SearchBox position={initial? '': 'top'}/>
+        <div>
+          <SearchBox position={initial? '': 'top'}/>
+          <hr className="seperator"/>
+          <FlightCard/>
+          <FlightCard/>
+        </div>
       </div>
     );
   }
