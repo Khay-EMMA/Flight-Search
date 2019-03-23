@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import '../styles/Main.css';
 import SearchBox from '../components/SearchBox';
+import store from "../store";
 
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      initial: true
-    }
   }
 
   render() {
+    const state = store.getState();
+    const { initial } = state;
     return (
-      <div onClick={() => this.setState({initial: false})}>
-        <div className={this.state.initial? "Main": "Main small"}></div>
-        <SearchBox position={this.state.initial? '': 'top'}/>
+      <div>
+        <div className={initial? "Main": "Main small"}></div>
+        <SearchBox position={initial? '': 'top'}/>
       </div>
     );
   }

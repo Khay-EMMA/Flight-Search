@@ -1,0 +1,3 @@
+export const SET_TRAVEL_MODE = "SET_TRAVEL_MODE";
+export const SET_INITIAL = "SET_INITIAL";
+export const SEARCH_FLIGHT = "SEARCH_FLIGHT";

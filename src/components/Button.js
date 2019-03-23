@@ -10,7 +10,7 @@ class Button extends Component {
     const { label, onClick } = this.props;
 
     return (
-      <div className="button" onClick>
+      <div className="button" onClick={onClick}>
         {label}
       </div>
     );

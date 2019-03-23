@@ -10,7 +10,7 @@ class Tag extends Component {
     const { active, label, onClick } = this.props;
 
     return (
-      <div className={active? "tag active": "tag"} onClick>
+      <div className={active? "tag active": "tag"} onClick={onClick}>
         {label}
       </div>
     );
