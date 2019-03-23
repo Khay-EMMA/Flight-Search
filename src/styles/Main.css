@@ -1,0 +1,17 @@
+.Main {
+  background: url(../static/bg1.jpg) bottom;
+  background-size: cover;
+  height: calc(100vh - 80px);
+  position: absolute;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.small {
+  height: 30vh;
+  background: url(../static/bg2.jpg) top left;
+  background-size: cover;
+}

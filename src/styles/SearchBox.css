@@ -1,0 +1,27 @@
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(60,64,67, 0.3), 0 4px 8px 3px rgba(60,64,67, 0.15);
+  margin: 0 auto;
+  padding: 8px 16px 48px;
+  position: relative;
+  top: 25vh;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  width: 80%;
+}
+
+.top {
+  top: 50px;
+}
+
+.flexed {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.right {
+  float: right;
+}
