@@ -3,7 +3,7 @@ import "../styles/InputWithAutocomplete.css";
 
 class Input extends Component {
   handleChange(e) {
-    this.props.onChange(e.value);
+    this.props.onChange(e.target.value);
   }
  
   render() {

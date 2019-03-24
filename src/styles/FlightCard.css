@@ -44,6 +44,14 @@
   color: #3c4043
 }
 
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
 @media (max-width: 767px) {
   .price {
     float: none;

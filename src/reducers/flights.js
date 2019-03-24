@@ -5,7 +5,7 @@ export default function flights(state = [], action) {
   switch (action.type) {
     case SEARCH_FLIGHT:
       let { query, mode } = action.payload;
-      let { origin, dest, dept, passengers } = query;
+      let { origin, dest, dept } = query;
       let ret = query.return;
 
       // One way filter

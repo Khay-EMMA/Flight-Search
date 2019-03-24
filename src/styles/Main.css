@@ -49,7 +49,7 @@
 .price-slider {
   margin: 20px 0px;
   padding: 10px;
-  width: 200px;
+  width: 90%;
   display: flex;
 }
 
@@ -80,6 +80,6 @@
     float: none;
   }
   .price-slider {
-    width: 80%;
+    width: 85%;
   }
 }

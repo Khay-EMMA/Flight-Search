@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import Button from "./Button";
 import "../styles/FlightCard.css";
+import store from "../store";
 
 class FlightCard extends Component {
   render() {
-    const { id, from, to, departure, arrival, duration, price } = this.props.data;
+    const { id, from, to, departure, arrival, duration, price, availability } = this.props.data;
+    const state = store.getState();
+    const passengers = state.query.passenger;
     const { returnData } = this.props;
+
     return (
       <div className="flight-card">
         <div className="outer-wrap">
@@ -18,6 +22,9 @@ class FlightCard extends Component {
               <div className="time">{departure} - {arrival}</div>
               <div className="city">
                 {from.split(' - ').join('(') + ')'} - {to.split(' - ').join('(') + ')'}
+              </div>
+              <div className="city">
+                Available seats - <span className={passengers<=availability? "green": "red"}>{availability}</span>
               </div>
             </div>
             <div className="inner">
@@ -38,6 +45,9 @@ class FlightCard extends Component {
                 <div className="time">{returnData.departure} - {returnData.arrival}</div>
                 <div className="city">
                   {returnData.from.split(' - ').join('(') + ')'} - {returnData.to.split(' - ').join('(') + ')'}
+                </div>
+                <div className="city">
+                  Available seats - <span className={passengers<=returnData.availability? "green": "red"}>{returnData.availability}</span>
                 </div>
               </div>
               <div className="inner">

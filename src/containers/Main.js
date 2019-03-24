@@ -17,7 +17,7 @@ class Main extends Component {
 
   render() {
     const state = store.getState();
-    const { initial, flights, mode, query } = state;
+    const { initial, flights } = state;
     return (
       <div>
         <div className={initial? "Main": "Main small"}></div>
@@ -25,13 +25,6 @@ class Main extends Component {
         { !initial &&
         <div className="result-container">
           <div className="seperator">
-            {/* <div className="right padd">
-              <div>Departure: {moment(query.dept).format("DD-MM-YYYY")}</div><br></br>
-              {
-                flights[] && 
-                <div>Return: {moment(query.return).format("DD-MM-YYYY")}</div>
-              }
-            </div> */}
             <div className="price-slider">
               <div className="symbol">₹ </div>
               <InputRange
@@ -45,14 +38,19 @@ class Main extends Component {
           {
             flights
               .filter(flight => {
+                // filter for price
                 let price = flight.price;
                 if (flight.returnData) {
                   price += flight.returnData.price;
                 }
                 return price >= this.state.price.min && price <= this.state.price.max;
               })
+              .sort((a,b) => a.price - b.price)
               .map(flight => {
+                // generate data to display and render
                 let { departure, arrival, returnData } = flight;
+
+                // one way data
                 let durationH = moment(arrival).diff(moment(departure), 'hours');
                 durationH = Math.floor(durationH);
                 let durationM = moment(arrival).diff(moment(departure), 'minutes') % 60;
@@ -66,9 +64,11 @@ class Main extends Component {
                   departure,
                   arrival,
                   duration,
-                  price: flight.price
+                  price: flight.price,
+                  availability: flight.availability
                 }
 
+                // return flight data
                 if (returnData) {
                   let durationH = moment(returnData.arrival).diff(moment(returnData.departure), 'hours');
                   durationH = Math.floor(durationH);
@@ -81,7 +81,8 @@ class Main extends Component {
                     departure: moment(returnData.departure).format("hh:mm A"),
                     arrival: moment(returnData.arrival).format("hh:mm A"),
                     duration,
-                    price: returnData.price
+                    price: returnData.price,
+                    availability: returnData.availability
                   };
                 } else {
                   returnData = null;

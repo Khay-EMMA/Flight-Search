@@ -41,13 +41,17 @@ airports.forEach((airport, index) => {
         let arrival = randomDate(arrStart, arrEnd);
         // set price
         let price = Math.floor(Math.random()*8000) + 2000;
+        // set available seats
+        let availability = Math.floor(Math.random()*50) + 1;
+
         flights[airport].push({
           id,
           from: airport,
           to: dest,
           departure,
           arrival,
-          price
+          price,
+          availability
         });
       }
     }

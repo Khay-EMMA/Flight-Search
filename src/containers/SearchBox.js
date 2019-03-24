@@ -31,7 +31,7 @@ class SearchBox extends Component {
 
   search() {
     let state = store.getState();
-    let { initial, mode, query } = state;console.log(query)
+    let { initial, mode, query } = state;
     if (query.origin && query.dest && query.passenger) {
       if (initial) {
         store.dispatch(setInitial(false));
