@@ -17,11 +17,23 @@
   top: 50px;
 }
 
-.flexed {
+.flexed, .form {
   display: flex;
   flex-wrap: wrap;
 }
 
 .right {
   float: right;
+}
+
+@media (max-width: 767px) {
+  .card {
+    top: 10vh;
+  }
+  .top {
+    top: 50px;
+  }
+  .form {
+    display: block;
+  }
 }

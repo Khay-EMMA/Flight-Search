@@ -87,7 +87,7 @@ class SearchBox extends Component {
             active={mode=='one'}/>
         </div>
         <hr/>
-        <div className="flexed">
+        <div className="form">
           <InputWithAutocomplete label="From" placeholder="Origin" results={airports} onChange={this.handleOriginInput}/>
           <InputWithAutocomplete label="To" placeholder="Destination" results={airports} onChange={this.handleDestInput}/>
           <CalendarInput label="Departure" date={state.query.dept} start={new Date()} onChange={this.handleDeptInput}/>

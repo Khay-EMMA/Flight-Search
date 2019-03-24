@@ -39,3 +39,13 @@
 .city {
   color: #3c4043
 }
+
+@media (max-width: 767px) {
+  .price {
+    float: none;
+    margin-bottom: 5px;
+  }
+  .id {
+    padding: 5px;
+  }
+}

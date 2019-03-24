@@ -8,6 +8,9 @@ import FlightCard from '../components/FlightCard';
 class Main extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      price: 0
+    }
   }
 
   render() {
@@ -19,6 +22,9 @@ class Main extends Component {
         <SearchBox position={initial? '': 'top'}/>
         <div className={initial? "hide": "result-container"}>
           <hr className="seperator"/>
+          <div className="price-slider">
+            
+          </div>
           {
             flights.map(flight => {
               let { departure, arrival, returnData } = flight;
