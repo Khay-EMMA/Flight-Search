@@ -15,8 +15,8 @@ class Main extends Component {
     return (
       <div>
         <div className={initial? "Main": "Main small"}></div>
-        <div>
-          <SearchBox position={initial? '': 'top'}/>
+        <SearchBox position={initial? '': 'top'}/>
+        <div className={initial? "hide": "result-container"}>
           <hr className="seperator"/>
           <FlightCard/>
           <FlightCard/>

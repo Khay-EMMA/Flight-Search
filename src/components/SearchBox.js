@@ -6,7 +6,15 @@ import InputWithAutocomplete from "./InputWithAutocomplete";
 import Tag from "./Tag";
 import "../styles/SearchBox.css";
 import store from "../store";
-import { setTravelMode, setInitial } from "../actions";
+import {
+  setTravelMode,
+  setInitial,
+  setOriginInput,
+  setDestInput,
+  setDeptInput,
+  setReturnInput,
+  setPassengerInput
+} from "../actions";
 
 class SearchBox extends Component {
   clickTag(mode) {
@@ -17,6 +25,26 @@ class SearchBox extends Component {
     if (store.getState().initial) {
       store.dispatch(setInitial(false));
     }
+  }
+
+  handleOriginInput(value) {
+    store.dispatch(setOriginInput(value));
+  }
+
+  handleDestInput(value) {
+    store.dispatch(setDestInput(value));
+  }
+
+  handleDeptInput(date) {
+    store.dispatch(setDeptInput(date));
+  }
+
+  handleReturnInput(date) {
+    store.dispatch(setReturnInput(date));
+  }
+
+  handlePassengerInput(value) {
+    store.dispatch(setPassengerInput(value));
   }
 
   render() {
@@ -39,11 +67,11 @@ class SearchBox extends Component {
         </div>
         <hr/>
         <div className="flexed">
-          <InputWithAutocomplete label="From" placeholder="From" results={results}/>
-          <InputWithAutocomplete label="To" placeholder="Destination" results={results}/>
-          <CalendarInput label="Departure" default={new Date()} start={new Date()}/>
-          <CalendarInput label="Return" default={new Date()} start={new Date()}/>
-          <Input label="Passengers" placeholder="Passengers" type="number"/>
+          <InputWithAutocomplete label="From" placeholder="Origin" results={results} onChange={this.handleOriginInput}/>
+          <InputWithAutocomplete label="To" placeholder="Destination" results={results} onChange={this.handleDestInput}/>
+          <CalendarInput label="Departure" date={state.query.dept} start={new Date()} onChange={this.handleDeptInput}/>
+          <CalendarInput label="Return" date={state.query.return} start={state.query.dept} onChange={this.handleReturnInput}/>
+          <Input label="Passengers" placeholder="Passengers" value={state.query.passenger} type="number" min={1} max={50} onChange={this.handlePassengerInput}/>
         </div>
         <hr/>
         <div className="right">

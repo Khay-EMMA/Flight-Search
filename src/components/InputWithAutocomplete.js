@@ -5,7 +5,9 @@ class InputWithAutocomplete extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      focus: false
+      value: "",
+      focus: false,
+      isSelected: false
     };
   }
 
@@ -14,22 +16,39 @@ class InputWithAutocomplete extends Component {
   }
 
   handleBlur() {
-    this.setState({ focus: false });
+    setTimeout(() => {
+      this.setState({focus: false});
+    }, 200);
+  }
+
+  selectItem(value) {
+    this.setState({value, isSelected: true, focus: false});
+    this.props.onChange(value);
   }
  
   render() {
     const { label, placeholder, results } = this.props;
 
     return (
-      <div className="container">
+      <div className="container" onBlur={this.handleBlur.bind(this)}>
         <div className="label">{label}</div>
-        <input className="input" placeholder={placeholder} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)}/>
+        <input
+          className="input"
+          placeholder={placeholder}
+          value={this.state.value}
+          onChange={(e) => this.setState({value: e.target.value, isSelected: false})}
+          onFocus={this.handleFocus.bind(this)}/>
         <div className={this.state.focus? "list-container": "hide"}>
           <ul className="list">
             {
-              results.map((item) => (
-                <li className="list-item">{item}</li>
-              ))
+              results
+                .filter((item) => {
+                  let q = new RegExp(this.state.value, 'i');
+                  return q.test(item);
+                })
+                .map((item) => (
+                  <li className="list-item" onClick={() => this.selectItem(item)}>{item}</li>
+                ))
             }
           </ul>
         </div>

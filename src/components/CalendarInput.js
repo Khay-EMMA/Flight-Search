@@ -8,7 +8,6 @@ class CalendarInput extends Component {
     super(props);
     this.state = {
       focus: false,
-      date: this.props.default
     };
   }
 
@@ -17,27 +16,32 @@ class CalendarInput extends Component {
   }
 
   handleBlur() {
-    this.setState({ focus: false });
+    setTimeout(() => {
+      this.setState({focus: false});
+    }, 200);
   }
 
   onChange(value) {
     console.log(value);
-    this.setState({ date: value });
-    this.handleBlur();
+    this.props.onChange(value);
+    this.setState({ focus: false });
   }
  
   render() {
-    const { label, start } = this.props;
+    let { label, date, start } = this.props;
+    if (date < start) {
+      date = start;
+    }
 
     return (
-      <div className="container">
+      <div className="container" onBlur={this.handleBlur.bind(this)}>
         <div className="label">{label}</div>
-        <input className="input" value={moment(this.state.date).format("DD-MM-YYYY")} onFocus={this.handleFocus.bind(this)} readOnly/>
+        <input className="input" value={moment(date).format("DD-MM-YYYY")} onFocus={this.handleFocus.bind(this)} readOnly/>
         <div className={this.state.focus? "calendar-container": "hide"}>
           <Calendar
             minDate={start}
             onChange={this.onChange.bind(this)}
-            value={this.state.date}
+            value={date}
           />
         </div>
       </div>
