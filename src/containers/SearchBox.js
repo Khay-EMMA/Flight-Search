@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Button from "./Button";
-import CalendarInput from "./CalendarInput";
-import Input from "./Input";
-import InputWithAutocomplete from "./InputWithAutocomplete";
-import Tag from "./Tag";
+import Button from "../components/Button";
+import CalendarInput from "../components/CalendarInput";
+import Input from "../components/Input";
+import InputWithAutocomplete from "../components/InputWithAutocomplete";
+import Tag from "../components/Tag";
 import "../styles/SearchBox.css";
 import store from "../store";
 import {

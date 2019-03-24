@@ -3,7 +3,7 @@ import moment from 'moment';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import '../styles/Main.css';
-import SearchBox from '../components/SearchBox';
+import SearchBox from './SearchBox';
 import store from "../store";
 import FlightCard from '../components/FlightCard';
 

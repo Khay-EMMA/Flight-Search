@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import "../styles/InputWithAutocomplete.css";
 
 class Input extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleChange(e) {
     this.props.onChange(e.value);
   }

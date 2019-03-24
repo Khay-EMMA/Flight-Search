@@ -31,7 +31,12 @@ class InputWithAutocomplete extends Component {
   }
  
   render() {
-    const { label, placeholder, results, onChange } = this.props;
+    const {
+      label = "",
+      placeholder = "",
+      results = [],
+      onChange = () => {}
+    } = this.props;
 
     return (
       <div className="container" onBlur={this.handleBlur.bind(this)}>
@@ -52,7 +57,7 @@ class InputWithAutocomplete extends Component {
                   return q.test(item);
                 })
                 .map((item) => (
-                  <li className="list-item" onClick={() => this.selectItem(item)}>{item}</li>
+                  <li key={item} className="list-item" onClick={() => this.selectItem(item)}>{item}</li>
                 ))
             }
           </ul>
