@@ -23,11 +23,15 @@ class InputWithAutocomplete extends Component {
 
   selectItem(value) {
     this.setState({value, isSelected: true, focus: false});
-    this.props.onChange(value);
+    this.props.onChange(true, value);
+  }
+
+  escapeRegExp(string){
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
   }
  
   render() {
-    const { label, placeholder, results } = this.props;
+    const { label, placeholder, results, onChange } = this.props;
 
     return (
       <div className="container" onBlur={this.handleBlur.bind(this)}>
@@ -36,14 +40,15 @@ class InputWithAutocomplete extends Component {
           className="input"
           placeholder={placeholder}
           value={this.state.value}
-          onChange={(e) => this.setState({value: e.target.value, isSelected: false})}
+          onChange={(e) => {this.setState({value: e.target.value, isSelected: false});onChange(false)}}
           onFocus={this.handleFocus.bind(this)}/>
         <div className={this.state.focus? "list-container": "hide"}>
           <ul className="list">
             {
               results
                 .filter((item) => {
-                  let q = new RegExp(this.state.value, 'i');
+                  let query = this.escapeRegExp(this.state.value)
+                  let q = new RegExp(query, 'i');
                   return q.test(item);
                 })
                 .map((item) => (

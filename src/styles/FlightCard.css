@@ -3,7 +3,7 @@
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(60,64,67, 0.3), 0 4px 8px 3px rgba(60,64,67, 0.15);
   margin: 10px auto;
-  padding: 8px 16px;
+  padding: 8px 16px 48px;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
@@ -13,6 +13,7 @@
 
 .price {
   float: right;
+  font-size: 26px;
 }
 
 .book-button {

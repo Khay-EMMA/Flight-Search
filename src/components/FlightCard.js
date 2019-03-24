@@ -4,34 +4,43 @@ import "../styles/FlightCard.css";
 
 class FlightCard extends Component {
   render() {
+    const { id, from, to, departure, arrival, deptDate, price } = this.props.data;
+    const { returnData } = this.props;
     return (
       <div className="flight-card">
         <div className="outer-wrap">
-          <div className="price">8950.00</div>
+          <div className="price">₹{returnData? price + returnData.price: price}</div>
           <div className="detail-container">
             <div className="id">
-              A-101
+              {id}
             </div>
             <div className="inner">
-              <div className="time">5:40 PM - 7:35 PM</div>
-              <div className="city">Mumbai(BOM) - Pune(PNQ)</div>
+              <div className="time">{departure} - {arrival}</div>
+              <div className="city">
+                {from.split(' - ').join('(') + ')'} - {to.split(' - ').join('(') + ')'}
+              </div>
             </div>
           </div>
         </div>
         <div className="outer-wrap">
+          
+          { returnData &&
+            <div className="detail-container">
+              <div className="id">
+                {returnData.id}
+              </div>
+              <div className="inner">
+                <div className="time">{returnData.departure} - {returnData.arrival}</div>
+                <div className="city">
+                  {returnData.from.split(' - ').join('(') + ')'} - {returnData.to.split(' - ').join('(') + ')'}
+                </div>
+              </div>
+            </div>
+          }
+        </div>
           <div className="book-button">
             <Button label="Book Flight"/>
           </div>
-          <div className="detail-container">
-            <div className="id">
-              A-102
-            </div>
-            <div className="inner">
-              <div className="time">5:40 AM - 7:35 AM</div>
-              <div className="city">Pune(PNQ) - Mumbai(BOM)</div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }

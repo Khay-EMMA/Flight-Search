@@ -6,7 +6,8 @@ import {
   SET_DEST_INPUT,
   SET_DEPT_INPUT,
   SET_RETURN_INPUT,
-  SET_PASSENGER_INPUT
+  SET_PASSENGER_INPUT,
+  SET_VALID_FLAG
 } from "../constants/action-types";
 
 export const setTravelMode = mode => ({
@@ -19,9 +20,12 @@ export const setInitial = val => ({
   payload: val
 });
 
-export const searchFlight = val => ({
+export const searchFlight = (mode, query) => ({
   type: SEARCH_FLIGHT,
-  payload: val
+  payload: {
+    mode,
+    query
+  }
 });
 
 export const setOriginInput = val => ({

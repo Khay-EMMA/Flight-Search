@@ -13,26 +13,47 @@ import {
   setDestInput,
   setDeptInput,
   setReturnInput,
-  setPassengerInput
+  setPassengerInput,
+  searchFlight
 } from "../actions";
 
 class SearchBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isValid: true,
+      error: ""
+    }
+  }
   clickTag(mode) {
     store.dispatch(setTravelMode(mode));
   }
 
   search() {
-    if (store.getState().initial) {
-      store.dispatch(setInitial(false));
+    let state = store.getState();
+    let { initial, mode, query } = state;console.log(query)
+    if (query.origin && query.dest && query.passenger) {
+      if (initial) {
+        store.dispatch(setInitial(false));
+      }
+      store.dispatch(searchFlight(mode, query));
     }
   }
 
-  handleOriginInput(value) {
-    store.dispatch(setOriginInput(value));
+  handleOriginInput(isValid, value) {
+    if (isValid) {
+      store.dispatch(setOriginInput(value));
+    } else {
+      // this.setState({ isValid, error: "Select origin and destination from the menu!" });
+    }
   }
 
-  handleDestInput(value) {
-    store.dispatch(setDestInput(value));
+  handleDestInput(isValid, value) {
+    if (isValid) {
+      store.dispatch(setDestInput(value));
+    } else {
+      // this.setState({ isValid, error: "Select origin and destination from the menu!" });
+    }
   }
 
   handleDeptInput(date) {
@@ -49,7 +70,7 @@ class SearchBox extends Component {
 
   render() {
     const state = store.getState();
-    const { mode } = state;
+    const { mode, airports } = state;
     const { position } = this.props;
     const results = ['Surat - STV', 'Bengaluru - BLR', 'Nagpur - NAG', 'Mumbai - BOM'];
 
@@ -67,8 +88,8 @@ class SearchBox extends Component {
         </div>
         <hr/>
         <div className="flexed">
-          <InputWithAutocomplete label="From" placeholder="Origin" results={results} onChange={this.handleOriginInput}/>
-          <InputWithAutocomplete label="To" placeholder="Destination" results={results} onChange={this.handleDestInput}/>
+          <InputWithAutocomplete label="From" placeholder="Origin" results={airports} onChange={this.handleOriginInput}/>
+          <InputWithAutocomplete label="To" placeholder="Destination" results={airports} onChange={this.handleDestInput}/>
           <CalendarInput label="Departure" date={state.query.dept} start={new Date()} onChange={this.handleDeptInput}/>
           <CalendarInput label="Return" date={state.query.return} start={state.query.dept} onChange={this.handleReturnInput}/>
           <Input label="Passengers" placeholder="Passengers" value={state.query.passenger} type="number" min={1} max={50} onChange={this.handlePassengerInput}/>
