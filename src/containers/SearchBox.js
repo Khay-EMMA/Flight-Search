@@ -21,8 +21,12 @@ class SearchBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isValid: true,
-      error: ""
+      valid: {
+        origin: false,
+        dest: false
+      },
+      error: "Select origin and destination from the menu!",
+      show: false
     }
   }
   clickTag(mode) {
@@ -32,27 +36,33 @@ class SearchBox extends Component {
   search() {
     let state = store.getState();
     let { initial, mode, query } = state;
-    if (query.origin && query.dest && query.passenger) {
+    let { dest, origin } = this.state.valid;
+    if (dest && origin && query.origin && query.dest && query.passenger>0) {
       if (initial) {
         store.dispatch(setInitial(false));
       }
       store.dispatch(searchFlight(mode, query));
+      this.setState({show: false});
+    } else {
+      this.setState({show: true});
     }
   }
 
   handleOriginInput(isValid, value) {
     if (isValid) {
       store.dispatch(setOriginInput(value));
+      this.setState({ valid: {...this.state.valid, origin: true}});
     } else {
-      // this.setState({ isValid, error: "Select origin and destination from the menu!" });
+      this.setState({ valid: {...this.state.valid, origin: isValid}});
     }
   }
 
   handleDestInput(isValid, value) {
     if (isValid) {
       store.dispatch(setDestInput(value));
+      this.setState({ valid: {...this.state.valid, dest: true}});
     } else {
-      // this.setState({ isValid, error: "Select origin and destination from the menu!" });
+      this.setState({ valid: {...this.state.valid, dest: isValid}});
     }
   }
 
@@ -97,8 +107,8 @@ class SearchBox extends Component {
         </div>
         <hr/>
         <div className="form">
-          <InputWithAutocomplete label="From" placeholder="Origin" results={originData} onChange={this.handleOriginInput}/>
-          <InputWithAutocomplete label="To" placeholder="Destination" results={destData} onChange={this.handleDestInput}/>
+          <InputWithAutocomplete label="From" placeholder="Origin" results={originData} onChange={this.handleOriginInput.bind(this)}/>
+          <InputWithAutocomplete label="To" placeholder="Destination" results={destData} onChange={this.handleDestInput.bind(this)}/>
           <CalendarInput label="Departure" date={state.query.dept} start={new Date()} onChange={this.handleDeptInput}/>
           {
             mode=="round" &&
@@ -107,6 +117,10 @@ class SearchBox extends Component {
           <Input label="Passengers" placeholder="Passengers" value={state.query.passenger} type="number" min={1} max={50} onChange={this.handlePassengerInput}/>
         </div>
         <hr/>
+        {
+          this.state.show &&
+          <div className="message">{this.state.error}</div>
+        }
         <div className="right">
           <Button label="Search" onClick={this.search.bind(this)}/>
         </div>

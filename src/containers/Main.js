@@ -87,9 +87,8 @@ class Main extends Component {
                 } else {
                   returnData = null;
                 }
-
                 
-                return (<FlightCard key={flight.id} data={data} returnData={returnData}/>)
+                return (<FlightCard key={returnData? data.id+returnData.id: data.id} data={data} returnData={returnData}/>)
               })
           }
           {

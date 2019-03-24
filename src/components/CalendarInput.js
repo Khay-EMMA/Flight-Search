@@ -22,7 +22,6 @@ class CalendarInput extends Component {
   }
 
   onChange(value) {
-    console.log(value);
     this.props.onChange(value);
     this.setState({ focus: false });
   }
