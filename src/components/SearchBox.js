@@ -70,9 +70,18 @@ class SearchBox extends Component {
 
   render() {
     const state = store.getState();
-    const { mode, airports } = state;
+    const { mode } = state;
     const { position } = this.props;
-    const results = ['Surat - STV', 'Bengaluru - BLR', 'Nagpur - NAG', 'Mumbai - BOM'];
+    let originData = [...state.airports];
+    let destData = [...state.airports];
+    if (state.query.origin) {
+      let index = destData.findIndex(a => a===state.query.origin);
+      if (index > -1) destData.splice(index, 1);
+    }
+    if (state.query.dest) {
+      let index = originData.findIndex(a => a===state.query.dest);
+      if (index > -1) originData.splice(index, 1);
+    }
 
     return (
       <div className={"card " + position}>
@@ -88,10 +97,13 @@ class SearchBox extends Component {
         </div>
         <hr/>
         <div className="form">
-          <InputWithAutocomplete label="From" placeholder="Origin" results={airports} onChange={this.handleOriginInput}/>
-          <InputWithAutocomplete label="To" placeholder="Destination" results={airports} onChange={this.handleDestInput}/>
+          <InputWithAutocomplete label="From" placeholder="Origin" results={originData} onChange={this.handleOriginInput}/>
+          <InputWithAutocomplete label="To" placeholder="Destination" results={destData} onChange={this.handleDestInput}/>
           <CalendarInput label="Departure" date={state.query.dept} start={new Date()} onChange={this.handleDeptInput}/>
-          <CalendarInput label="Return" date={state.query.return} start={state.query.dept} onChange={this.handleReturnInput}/>
+          {
+            mode=="round" &&
+            <CalendarInput label="Return" date={state.query.return} start={state.query.dept} onChange={this.handleReturnInput}/>
+          }
           <Input label="Passengers" placeholder="Passengers" value={state.query.passenger} type="number" min={1} max={50} onChange={this.handlePassengerInput}/>
         </div>
         <hr/>

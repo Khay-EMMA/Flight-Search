@@ -4,7 +4,7 @@ import "../styles/FlightCard.css";
 
 class FlightCard extends Component {
   render() {
-    const { id, from, to, departure, arrival, deptDate, price } = this.props.data;
+    const { id, from, to, departure, arrival, duration, price } = this.props.data;
     const { returnData } = this.props;
     return (
       <div className="flight-card">
@@ -20,6 +20,11 @@ class FlightCard extends Component {
                 {from.split(' - ').join('(') + ')'} - {to.split(' - ').join('(') + ')'}
               </div>
             </div>
+            <div className="inner">
+              <div className="duration">
+                {duration}
+              </div>
+            </div>
           </div>
         </div>
         <div className="outer-wrap">
@@ -33,6 +38,11 @@ class FlightCard extends Component {
                 <div className="time">{returnData.departure} - {returnData.arrival}</div>
                 <div className="city">
                   {returnData.from.split(' - ').join('(') + ')'} - {returnData.to.split(' - ').join('(') + ')'}
+                </div>
+              </div>
+              <div className="inner">
+                <div className="duration">
+                  {returnData.duration}
                 </div>
               </div>
             </div>

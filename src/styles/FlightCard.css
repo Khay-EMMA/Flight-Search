@@ -29,11 +29,15 @@
 }
 
 .inner {
-  padding: 5px;
+  padding: 5px 25px;
 }
 
 .time {
   padding-bottom: 5px;
+}
+
+.duration {
+  font-size: 22px;
 }
 
 .city {
@@ -46,6 +50,9 @@
     margin-bottom: 5px;
   }
   .id {
+    padding: 5px;
+  }
+  .inner {
     padding: 5px;
   }
 }

@@ -16,6 +16,56 @@
   background-size: cover;
 }
 
+.right {
+  float: right;
+}
+
+.padd {
+  padding: 20px;
+}
+
 .seperator {
+  margin: 0px auto;
   margin-top: 80px;
+  padding: 5px 16px;
+  width: 80%;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(60,64,67, 0.3), 0 4px 8px 3px rgba(60,64,67, 0.15);
+}
+
+.price-slider {
+  margin: 20px 0px;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+}
+
+.symbol {
+  font-size: 36px;
+  padding: 0px 20px;
+  margin-top: -10px;
+}
+
+.input-range__slider {
+  background: #fed538;
+  border: 1px solid #fed538;
+}
+
+.input-range__label {
+  color: #fff
+}
+.input-range__track {
+  background: #fff;
+}
+
+.input-range__track--active {
+  background: #fed538;
+}
+
+@media (max-width: 767px) {
+  .right {
+    float: none;
+  }
 }

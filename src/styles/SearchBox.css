@@ -22,10 +22,6 @@
   flex-wrap: wrap;
 }
 
-.right {
-  float: right;
-}
-
 @media (max-width: 767px) {
   .card {
     top: 10vh;
