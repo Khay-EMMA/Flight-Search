@@ -9,6 +9,7 @@
 
 .calendar-container {
   position: absolute;
+  z-index: 1000;
 }
 
 .hide {

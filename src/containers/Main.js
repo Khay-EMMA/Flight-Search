@@ -88,8 +88,14 @@ class Main extends Component {
                 }
 
                 
-                return (<FlightCard data={data} returnData={returnData}/>)
+                return (<FlightCard key={flight.id} data={data} returnData={returnData}/>)
               })
+          }
+          {
+            !flights.length &&
+            <div className="message-container">
+              Oops! Looks like you have to choose another day for your trip!
+            </div>
           }
         </div>}
       </div>
