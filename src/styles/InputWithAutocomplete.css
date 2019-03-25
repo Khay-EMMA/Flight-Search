@@ -13,12 +13,18 @@
   border: 1px solid #e5e5e5;
   font-size: 16px;
   padding: 10px 15px;
+  padding-left: 32px;
   width: -webkit-fill-available;
 }
 
 .input:focus {
   outline: none;
-  border: 1px solid #fed538
+  border: 1px solid #fed538;
+}
+
+.icon {
+  position: absolute;
+  padding: 5px 0px;
 }
 
 .list-container {

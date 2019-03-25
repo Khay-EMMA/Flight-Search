@@ -5,6 +5,11 @@ import Input from "../components/Input";
 import InputWithAutocomplete from "../components/InputWithAutocomplete";
 import Tag from "../components/Tag";
 import "../styles/SearchBox.css";
+import originicon from "../static/blackplace.png";
+import desticon from "../static/yellowplace.png";
+import departicon from "../static/take-off.png";
+import returnicon from "../static/return.png";
+import passengericon from "../static/passenger.png";
 import store from "../store";
 import {
   setTravelMode,
@@ -25,7 +30,6 @@ class SearchBox extends Component {
         origin: false,
         dest: false
       },
-      error: "Select origin and destination from the menu!",
       show: false
     }
   }
@@ -80,7 +84,7 @@ class SearchBox extends Component {
 
   render() {
     const state = store.getState();
-    const { mode } = state;
+    const { mode, query } = state;
     const { position } = this.props;
     let originData = [...state.airports];
     let destData = [...state.airports];
@@ -107,19 +111,19 @@ class SearchBox extends Component {
         </div>
         <hr/>
         <div className="form">
-          <InputWithAutocomplete label="From" placeholder="Origin" results={originData} onChange={this.handleOriginInput.bind(this)}/>
-          <InputWithAutocomplete label="To" placeholder="Destination" results={destData} onChange={this.handleDestInput.bind(this)}/>
-          <CalendarInput label="Departure" date={state.query.dept} start={new Date()} onChange={this.handleDeptInput}/>
+          <InputWithAutocomplete label="From" placeholder="Origin" icon={originicon} results={originData} onChange={this.handleOriginInput.bind(this)}/>
+          <InputWithAutocomplete label="To" placeholder="Destination" icon={desticon} results={destData} onChange={this.handleDestInput.bind(this)}/>
+          <CalendarInput label="Departure" date={state.query.dept} icon={departicon} start={new Date()} onChange={this.handleDeptInput}/>
           {
             mode=="round" &&
-            <CalendarInput label="Return" date={state.query.return} start={state.query.dept} onChange={this.handleReturnInput}/>
+            <CalendarInput label="Return" date={state.query.return} icon={returnicon} start={state.query.dept} onChange={this.handleReturnInput}/>
           }
-          <Input label="Passengers" placeholder="Passengers" value={state.query.passenger} type="number" min={1} max={50} onChange={this.handlePassengerInput}/>
+          <Input label="Passengers" placeholder="Passengers" icon={passengericon} value={state.query.passenger} type="number" min={1} max={50} onChange={this.handlePassengerInput}/>
         </div>
         <hr/>
         {
           this.state.show &&
-          <div className="message">{this.state.error}</div>
+          <div className="message">{query.passenger > 0? "Select origin and destination from the menu!":"Enter valid no of passengers"}</div>
         }
         <div className="right">
           <Button label="Search" onClick={this.search.bind(this)}/>

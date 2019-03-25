@@ -27,7 +27,7 @@ class CalendarInput extends Component {
   }
  
   render() {
-    let { label, date, start } = this.props;
+    let { label, date, start, icon } = this.props;
     if (date < start) {
       date = start;
     }
@@ -35,6 +35,12 @@ class CalendarInput extends Component {
     return (
       <div className="container" onBlur={this.handleBlur.bind(this)}>
         <div className="label">{label}</div>
+        {
+          icon &&
+          <div className="icon">
+            <img height={30} src={icon}/>
+          </div>
+        }
         <input className="input" value={moment(date).format("DD-MM-YYYY")} onFocus={this.handleFocus.bind(this)} readOnly/>
         <div className={this.state.focus? "calendar-container": "hide"}>
           <Calendar

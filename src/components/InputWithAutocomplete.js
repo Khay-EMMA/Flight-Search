@@ -35,12 +35,19 @@ class InputWithAutocomplete extends Component {
       label = "",
       placeholder = "",
       results = [],
-      onChange = () => {}
+      onChange = () => {},
+      icon
     } = this.props;
 
     return (
       <div className="container" onBlur={this.handleBlur.bind(this)}>
         <div className="label">{label}</div>
+        {
+          icon &&
+          <div className="icon">
+            <img height={30} src={icon}/>
+          </div>
+        }
         <input
           className="input"
           placeholder={placeholder}
